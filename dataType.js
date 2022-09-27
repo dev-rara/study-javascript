@@ -11,4 +11,8 @@
  console.log(isMinus)
  console.log(isOk)
 
- 
+ let name1 = null
+ console.log(name1)    //null 출력
+
+ let name2
+ console.log(name2)    //undefined 출력
