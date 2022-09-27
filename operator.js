@@ -44,3 +44,42 @@ console.log(totalPrice)         //180000 출력
 
 totalPrice -= shirtsPrice
 console.log(totalPrice)         //80000 출력
+
+
+
+//비교 연산자
+console.log(1 < 2)    //true
+console.log(2 <= 2)   //true
+console.log(1 > 2)    //false
+console.log(1 >= 2)   //false
+
+
+
+//논리 연산자
+let isOnSale = true
+let isDiscountItem = true
+
+console.log(isOnSale && isDiscountItem)     //true
+console.log(isOnSale || isDiscountItem)     //true
+
+isOnSale = false
+console.log(isOnSale && isDiscountItem)     //false
+console.log(isOnSale || isDiscountItem)     //true
+
+isDiscountItem = false
+console.log(isOnSale && isDiscountItem)     //false
+console.log(isOnSale || isDiscountItem)     //false
+
+console.log(!isOnSale)                       //true
+
+
+
+
+//일치 연산자
+console.log(1 === 1)    //true
+console.log(1 === 2)    //false
+console.log('Javascript' === 'Javascript')    //true
+console.log('Javascript' === 'javascript')    //false
+
+console.log(1 === "1")      //false
+console.log(1 == "1")       //true
