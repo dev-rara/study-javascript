@@ -12,3 +12,12 @@ if(capPrice < 40000) {
     console.log('너무 비싸네요!')
 }
 
+
+const distance = 2000
+if(distance < 2000) {
+    console.log('걸어가자')
+} else if(distance >= 2 && distance < 5000) {
+    console.log('택시를 타자')
+} else {
+    console.log('기차를 차자')
+}
