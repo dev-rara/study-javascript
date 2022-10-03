@@ -20,7 +20,6 @@
         }
 
         .mytitle {
-            background-color: green;
             width: 100%;
             height: 250px;
 
@@ -56,11 +55,11 @@
         .mycoment {
             color: gray;
         }
-
-        .wrap {
-            max-width: 1200px;
+        
+        .mycards {
+            margin: 20px auto 0px auto;
             width: 95%;
-            margin: 20 auto 0 auto;
+            max-width: 1200px;
         }
 
         .mypost {
@@ -86,6 +85,46 @@
         }
     </style>
     <script>
+        $(document).ready(function () {
+            listing()
+        })
+        
+        function listing() {
+            $('#cards-box').empty()
+            
+            $.ajax({
+                type: "GET",
+                url: "http://spartacodingclub.shop/web/api/movie",
+                data: {},
+                success: function (response) {
+                    let rows = response['movies']
+                    for (let i = 0; i < rows.length; i++) {
+                        let title = rows[i]['title']
+                        let desc = rows[i]['desc']
+                        let image = rows[i]['image']
+                        let star = rows[i]['star']
+                        let comment = rows[i]['comment']
+                        
+                        let star_image = ' * '.repeat(star)
+                        
+                        let temp_html = `<div class="col">
+                                            <div class="card">
+                                                <img src="${image}"
+                                                     class="card-img-top" alt="...">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">${title}</h5>
+                                                    <p class="card-text">${desc}</p>
+                                                    <p>${star_image}</p>
+                                                    <p class="mycoment">${comment}</p>
+                                                </div>
+                                            </div>
+                                        </div>`
+                        $('#mycards').append(temp_html)
+                    }
+                }
+            })
+        }
+        
         function open_box() {
             $('#post-box').show()
         }
@@ -97,87 +136,37 @@
 </head>
 
 <body>
-<div class="mytitle">
-    <h1>내 생애 최고의 영화들</h1>
-    <button onclick="open_box()">영화 기록하기</button>
-</div>
-<div class="mypost" id="post-box">
-    <div class="form-floating mb-3">
-        <input type="url" class="form-control" id="url" placeholder="영화 URL">
-        <label for="url">영화 URL</label>
+    <div class="mytitle">
+        <h1>내 생애 최고의 영화들</h1>
+        <button onclick="open_box()">영화 기록하기</button>
     </div>
-    <div class="input-group mb-3">
-        <label class="input-group-text" for="inputGroupSelect01">별점</label>
-        <select class="form-select" id="inputGroupSelect01">
-            <option selected>-- 선택하기 --</option>
-            <option value="1">⭐</option>
-            <option value="2">⭐⭐</option>
-            <option value="3">⭐⭐⭐</option>
-            <option value="4">⭐⭐⭐⭐</option>
-            <option value="5">⭐⭐⭐⭐⭐</option>
-        </select>
-    </div>
-    <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-                  style="height: 100px"></textarea>
-        <label for="floatingTextarea2">코멘트</label>
-    </div>
-    <div class="mybuttons">
-        <button type="button" class="btn btn-dark">기록하기</button>
-        <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
-    </div>
-</div>
-<div class="wrap">
-    <div id="cards-box" class="row row-cols-1 row-cols-md-4">
-        <div class="col">
-            <div class="card">
-                <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
-                     class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">제목</h5>
-                    <p class="card-text">내용</p>
-                    <p>⭐⭐⭐</p>
-                    <p class="mycoment">코멘트</p>
-                </div>
-            </div>
+    <div class="mypost" id="post-box">
+        <div class="form-floating mb-3">
+            <input type="url" class="form-control" id="url" placeholder="영화 URL">
+            <label for="url">영화 URL</label>
         </div>
-        <div class="col">
-            <div class="card">
-                <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
-                     class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">제목</h5>
-                    <p class="card-text">내용</p>
-                    <p>⭐⭐⭐</p>
-                    <p class="mycoment">코멘트</p>
-                </div>
-            </div>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">별점</label>
+            <select class="form-select" id="inputGroupSelect01">
+                <option selected>-- 선택하기 --</option>
+                <option value="1">⭐</option>
+                <option value="2">⭐⭐</option>
+                <option value="3">⭐⭐⭐</option>
+                <option value="4">⭐⭐⭐⭐</option>
+                <option value="5">⭐⭐⭐⭐⭐</option>
+            </select>
         </div>
-        <div class="col">
-            <div class="card">
-                <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
-                     class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">제목</h5>
-                    <p class="card-text">내용</p>
-                    <p>⭐⭐⭐</p>
-                    <p class="mycoment">코멘트</p>
-                </div>
-            </div>
+        <div class="form-floating">
+            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                      style="height: 100px"></textarea>
+            <label for="floatingTextarea2">코멘트</label>
         </div>
-        <div class="col">
-            <div class="card">
-                <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
-                     class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">제목</h5>
-                    <p class="card-text">내용</p>
-                    <p>⭐⭐⭐</p>
-                    <p class="mycoment">코멘트</p>
-                </div>
-            </div>
+        <div class="mybuttons">
+            <button type="button" class="btn btn-dark">기록하기</button>
+            <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
         </div>
     </div>
-</div>
+    <div id="mycards" class="row row-cols-1 row-cols-md-4">
+    </div>
 </body>
 </html>
