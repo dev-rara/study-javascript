@@ -28,4 +28,3 @@ const b = 2000
 const c = 3000
 const avg = getAverage(a, b, c)
 console.log(`평균가격: ${avg}`)
-
