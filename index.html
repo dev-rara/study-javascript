@@ -70,6 +70,7 @@
 
             box-shadow: 0px 0px 3px 0px gray;
             padding: 20px;
+            display: none;
         }
 
         .mybuttons {
@@ -85,14 +86,12 @@
         }
     </style>
     <script>
-        let count = 0
-        function hey() {
-            count += 1
-            if (count % 2 === 0) {
-                alert('짝수 입니다.')
-            } else {
-                alert ('홀수 입니다.')
-            }
+        function open_box() {
+            $('#post-box').show()
+        }
+        
+        function close_box() {
+            $('#post-box').hide()
         }
     </script>
 </head>
@@ -100,12 +99,12 @@
 <body>
 <div class="mytitle">
     <h1>내 생애 최고의 영화들</h1>
-    <button onclick="hey()">영화 기록하기</button>
+    <button onclick="open_box()">영화 기록하기</button>
 </div>
-<div class="mypost">
+<div class="mypost" id="post-box">
     <div class="form-floating mb-3">
-        <input type="url" class="form-control" id="floatingInput" placeholder="영화 URL">
-        <label for="floatingInput">영화 URL</label>
+        <input type="url" class="form-control" id="url" placeholder="영화 URL">
+        <label for="url">영화 URL</label>
     </div>
     <div class="input-group mb-3">
         <label class="input-group-text" for="inputGroupSelect01">별점</label>
@@ -125,11 +124,11 @@
     </div>
     <div class="mybuttons">
         <button type="button" class="btn btn-dark">기록하기</button>
-        <button type="button" class="btn btn-outline-dark">닫기</button>
+        <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
     </div>
 </div>
 <div class="wrap">
-    <div class="row row-cols-1 row-cols-md-4">
+    <div id="cards-box" class="row row-cols-1 row-cols-md-4">
         <div class="col">
             <div class="card">
                 <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
